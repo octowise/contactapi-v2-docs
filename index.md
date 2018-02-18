@@ -1,37 +1,55 @@
-## Welcome to GitHub Pages
+# Octowise ContactAPI V2
 
-You can use the [editor on GitHub](https://github.com/octowise/contactapi-v2-docs/edit/master/index.md) to maintain and preview the content for your website in Markdown files.
+Unsere ContactAPI ist ein JSON Webservice, bei welchem alle Abfragen über eine zentrale URL durchgeführt werden. Die API Abfrage erfolgt als POST Request, mit den zwei Pflichtfeldern api_key & contact_data.
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
+## API URL
 
-### Markdown
+https://api.contactapi.de/v1.5/parse.php
 
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
+## POST Felder
+
+- api_key= Zur Nutzung der ContactAPI wird ein API-Key benötigt. Wenn du noch keinen API-Key besitzt, kannst du diesen hier kostenlos beantragen.
+- contact_data Es kann jede Art von Text an die API übergeben werden. Um jedoch zu­frie­den­stel­lende Ergebnisse zu erhalten, solltest du unsere unten gesammelten Hinweise beachten.
+
+
+## API Ausgabe
+
+Bei einer erfolgreichen Abfrage erhältst du ein JSON Objekt mit dem status:1 sowie den gewünschten Daten als data von der API zurück. Sollte die Abfrage fehlschlagen, wird ein anderer Status Code sowie eine Fehlermeldung als error zurückgegeben.
 
 ```markdown
-Syntax highlighted code block
-
-# Header 1
-## Header 2
-### Header 3
-
-- Bulleted
-- List
-
-1. Numbered
-2. List
-
-**Bold** and _Italic_ and `Code` text
-
-[Link](url) and ![Image](src)
+{
+   "status":"1",
+   "data":{
+      "Prefix":null,
+      "FirstName":"Peter",
+      "MiddleName":null,
+      "LastName":"Mustermann",
+      "Suffix":null,
+      "Company":null,
+      "Company2":null,
+      "Position":null,
+      "StreetAddress1":"Musterweg 12",
+      "StreetAddress2":null,
+      "PostboxAddress":null,
+      "PostboxPostCode":null,
+      "PostCode":"123456",
+      "PlaceName":"Berlin",
+      "Province":null,
+      "Country":"Deutschland",
+      "Phone1":null,
+      "Phone2":null,
+      "Mobile":null,
+      "Fax":null,
+      "Email":"mail@example.com",
+      "Url":null,
+      "Gender":"M",
+      "CountryIsoCode":"DE"
+   }
+}
 ```
 
-For more details see [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
+## Abfrage Beispiele
 
-### Jekyll Themes
-
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/octowise/contactapi-v2-docs/settings). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
-
-### Support or Contact
-
-Having trouble with Pages? Check out our [documentation](https://help.github.com/categories/github-pages-basics/) or [contact support](https://github.com/contact) and we’ll help you sort it out.
+```markdown
+curl --data "api_key=DeinApiKey&contact_data=Peter Mustermann,Musterweg 12, 12356 Berlin, mail@example.com" https://api.contactapi.de/v1.5/parse.php
+```
