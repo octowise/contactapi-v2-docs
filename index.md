@@ -1,4 +1,4 @@
-# Octowise ContactAPI V2
+# Octowise® ContactAPI V2
 
 Unsere ContactAPI ist ein JSON Webservice, bei welchem alle Abfragen über eine zentrale URL durchgeführt werden. Die API Abfrage erfolgt als POST Request, mit den zwei Pflichtfeldern api_key & contact_data.
 
